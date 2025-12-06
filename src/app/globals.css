@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -12,15 +19,32 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* React Grid Layout Overrides */
+.react-grid-item.react-grid-placeholder {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0.75rem !important; /* Match rounded-xl */
+  opacity: 0.5 !important;
+  z-index: 1 !important;
+}
+
+.dark .react-grid-item.react-grid-placeholder {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.react-grid-item.react-grid-drag {
+  z-index: 1000 !important;
+  cursor: grabbing !important;
+  opacity: 0.9 !important;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important; /* shadow-xl */
+}
+
+.react-grid-item.resizing {
+  z-index: 1000 !important;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
 }
